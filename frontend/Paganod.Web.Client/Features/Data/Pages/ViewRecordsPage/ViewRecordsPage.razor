@@ -1,0 +1,112 @@
+@namespace Paganod.Web.Features.Data.Pages
+
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+@page "/data/{TableName}"
+
+<!--
+The columns should really be coming from the Loading Schema model, then display the record's col value if it has a value available
+-->
+
+<Paganod.Web.Client.Shared.Layout.TitleContent TitleText="@TableName">
+
+    @* <div class="container">
+        <div class="section-title">
+            <p>@TableName</p>
+        </div> *@
+
+        <div class="section-content p-2">
+
+            @* @if (SchemaState.Value.IsLoading)
+            {
+                <p>@SchemaState.Value.StatusMessage</p>
+            }
+
+            @if (DataState.Value.IsLoading)
+            {
+                <p>@DataState.Value.StatusMessage</p>
+            } *@
+
+            @* TODO: Make this table a seperate component *@
+
+            <table class="table table-fixed m-3">
+                <thead>
+                    @if (SchemaState.Value.SchemaModel is not null)
+                    {
+                        @foreach (var column in SchemaState.Value.SchemaModel.Columns)
+                        {
+                            <th>@column.Name</th>
+                        }
+                    }
+                    else
+                    {
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    }
+                </thead>
+                <tbody>
+                    @if (SchemaState.Value.SchemaModel is not null && DataState.Value.CurrentRecords is not null && !DataState.Value.IsLoading)
+                    {
+                        @foreach(var record in DataState.Value.CurrentRecords)
+                        {                            
+                            <tr class="group bg-neutral-200"
+                                @onclick="(() => NavigateToRecord(record))">
+                                @foreach (var column in SchemaState.Value.SchemaModel.Columns)
+                                {
+                                    <td>
+                                        @if (record.Fields.Contains(column.Name) && record[column.Name] is not null)
+                                        {
+                                            <p class="group-hover:bg-neutral-200 group-hover:cursor-pointer">@record[column.Name]</p>
+                                        }
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    }
+                    else if (SchemaState.Value.SchemaModel is not null)
+                    {
+                        @for(int s = 0; s < 50; s++)
+                        {
+                            <tr>
+                                @foreach(var column in SchemaState.Value.SchemaModel.Columns)
+                                {
+                                    <td>
+                                        <div class="animate-pulse flex space-x-4">
+                                            <div class="flex-1 space-y-6 py-1">
+                                                <div class="h-2 bg-slate-700 rounded"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        @for(int i = 0; i < 50; i++)
+                        {
+                            <tr>
+                                @for(int c = 0; c < 6; c++)
+                                {
+                                    <td>
+                                        <div class="animate-pulse flex space-x-4">
+                                            <div class="flex-1 space-y-6 py-1">
+                                                <div class="h-2 bg-slate-700 rounded"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    @* </div> *@
+
+</Paganod.Web.Client.Shared.Layout.TitleContent>

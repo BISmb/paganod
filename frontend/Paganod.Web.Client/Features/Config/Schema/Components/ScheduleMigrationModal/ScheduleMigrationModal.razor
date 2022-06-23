@@ -1,0 +1,56 @@
+@namespace Paganod.Web.Features.Config.Schema.Components
+
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+<p>Schedule Migration</p>
+
+<p>Would you like to schedule these migrations?</p>
+
+<EditForm Model="FormModel">
+    <table>
+        <thead>
+            <th>Migration Id:</th>
+            <th>Scheduled Time:</th>
+            <th>Now?</th>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>
+                    Forward Migration (@ForwardMigrationId):
+                </td>
+                <td>
+                    CST: <InputDate @bind-Value="FormModel.ForwardMigrationScheduledTime" />
+                </td>
+                <td>
+                    <input type="checkbox" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Sunset Migration (@SunsetMigrationId):
+                </td>
+                <td>
+                    @switch (FormModel.SunsetMigrationScheduleNow)
+                    {
+                        case true:
+                            <p>CST: </p><InputDate disabled @bind-Value="FormModel.SunsetMigrationScheduledTime" />
+                            break;
+
+                        case false:
+                            <p>CST: </p><InputDate @bind-Value="FormModel.SunsetMigrationScheduledTime" />
+                            break;
+                    }
+                </td>
+                <td>
+                    <input type="checkbox" @onchange="((args) => ToggleScheduleNow(FormModel.SunsetMigrationId))" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</EditForm>
+
+<p>@ForwardMigrationId</p>
+
+<p>@SunsetMigrationId</p>

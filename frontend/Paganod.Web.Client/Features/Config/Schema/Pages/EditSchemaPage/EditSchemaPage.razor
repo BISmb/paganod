@@ -1,0 +1,24 @@
+@namespace Paganod.Web.Features.Config.Schema.Pages
+
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+@page "/config/schema/new"
+@page "/config/schema/{SchemaId:guid}"
+
+@if (ConfigSchemaState.Value.IsLoading)
+{
+    <p>Loading...</p>
+}
+
+@if (ConfigSchemaState.Value.Form.SchemaModelId != Guid.Empty)
+{
+    <Paganod.Web.Client.Features.Config.Schema.Components.SchemaEditor 
+        FormModel="ConfigSchemaState.Value.Form" 
+        OnFormSubmit="OnFormSubmit" />
+
+    @if(ConfigSchemaState.Value.Form.ChangesDetected)
+    {
+        <p>Changes were detected. Please save your work.</p>
+        <button class="btn">Save Changes</button>
+    }
+}

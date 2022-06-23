@@ -1,0 +1,49 @@
+@namespace Paganod.Web.Client.Features.Config.Schema.Components
+
+@inherits FluxorComponent
+
+@if (ConfigSchemaState.Value.Form is not null)
+{
+    <EditForm Model="ConfigSchemaState.Value.Form" OnSubmit="OnFormSubmit">
+
+        <div class="paganod-input-pair">
+            <label>Table Name:</label>
+            <InputText @bind-Value="ConfigSchemaState.Value.Form.TableName" />
+        </div>
+
+        <div class="paganod-input-pair">
+            <label>Primary Key Name:</label>
+            <InputText @bind-Value="ConfigSchemaState.Value.Form.PrimaryKeyName" />
+        </div>
+
+        <div class="paganod-input-pair">
+            <label>Table Name:</label>
+            <InputSelect @bind-Value="ConfigSchemaState.Value.Form.PrimaryKeyType">
+                <option value="@System.Data.DbType.Int32">Number</option>
+                <option selected value="@System.Data.DbType.Guid">Guid</option>
+            </InputSelect>
+        </div>
+
+        <button type="submit" class="paganod-button">Create Schema</button>
+
+    </EditForm>
+}
+
+<style>
+    .paganod-input-pair {
+        @@apply flex flex-row p-3 my-2;
+    }
+
+    .paganod-input-pair > * {
+        @@apply flex-1;
+    }
+
+    .paganod-button {
+        @@apply button text-neutral-200 bg-teal-500 rounded p-2 hover:bg-teal-700;
+
+        margin-left: auto;
+        margin-right: 0;
+        display: block;
+        margin-top: 3em;
+    }
+</style>

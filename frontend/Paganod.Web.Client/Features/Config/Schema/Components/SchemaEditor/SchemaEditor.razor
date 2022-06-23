@@ -1,0 +1,84 @@
+@using Paganod.Types.Base
+
+@namespace Paganod.Web.Client.Features.Config.Schema.Components
+
+@if(FormModel is null)
+{
+    <p>Form Model is null</p>
+}
+
+@if(FormModel is not null)
+{
+    <input type="text" @bind="FormModel.TableName" />
+
+    <p>@FormModel.SolutionId</p>
+
+    <EditForm Model="FormModel" OnSubmit="OnFormSubmit">
+
+        <div class="d-flex">
+            <div>
+                <label>Table Name</label>
+                <InputText @bind-Value="FormModel.TableName" />
+            </div>
+
+            <div>
+                <label>Table Name</label>
+                <InputText @bind-Value="FormModel.TableName" />
+            </div>
+
+            <div>
+                <label>Table Name</label>
+                <InputText @bind-Value="FormModel.TableName" />
+            </div>
+        </div>
+
+
+        <button type="button" @onclick="FormModel.AddNewColumn">Add Field</button>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Name:</th>
+                    <th>Type:</th>
+                    <th>Options:</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in FormModel.Columns)
+                {
+                    <tr>
+                        <td>
+                            <InputText placeholder="New Column Name" @bind-Value="item.Name" />
+                        </td>
+
+                        <td>
+                            <InputSelect @bind-Value="item.Type">
+                                @* <option value="@FormFieldType.CheckBox">Check</option>
+                                <option value="@FormFieldType.Date">Date</option>
+                                <option value="@FormFieldType.DateTime">DateTime</option>
+                                <option value="@FormFieldType.Decimal">Decimal</option>
+                                <option value="@FormFieldType.Number">Number</option>
+                                <option value="@FormFieldType.Reference">Reference</option>
+                                <option value="@FormFieldType.Text">Text</option>
+                                <option value="@FormFieldType.Dropdown">Dropdown</option> *@
+                            </InputSelect>
+                        </td>
+                        <td>
+                            <button class="bg-gray-500 hover:bg-blue-700 text-white font-bold py-2 px-4"
+                                    type="button" 
+                                    @onclick=@((args) => ConfigureOptionsAsync(item))>...</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+
+        @* @if (ChangesDetected)
+        {
+            <button type="submit">Save Changes</button>
+        } *@
+
+    </EditForm>
+}

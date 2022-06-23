@@ -1,0 +1,33 @@
+@namespace Paganod.Web.Features.Data.Components
+
+@inherits FluxorComponent
+
+@if (DataState.Value.IsLoading)
+{
+    <p>Loading...</p>
+}
+
+@if (AvailableLookupRecords is not null)
+{
+    @if(AvailableLookupRecords.Length > 0)
+    {
+        <table>
+            <thead>
+                <th>Account Id:</th>
+            </thead>
+
+            <tbody>
+                @foreach (var record in AvailableLookupRecords)
+                {
+                    @* <tr @onclick="(() => SelectRecord(record.Id))">
+                        <td>@record.Id</td>
+                    </tr> *@
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No Records found...</p>
+    }
+}

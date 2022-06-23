@@ -1,0 +1,62 @@
+@namespace Paganod.Web.Features.Data.Components
+
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+@* @Label
+
+@FieldName
+
+@Value *@
+
+@* <input type="text" @onchange="@HandleValueChange" value="@Value" /> *@
+
+<!--
+    Text,
+    Number,
+    Date,
+    DateTime,
+    Lookup,
+    Dropdown,
+    Image? (base64 or url)
+    Markdown?
+-->
+
+<div class="paganod-form-element">
+
+    <label hidden>Type: @TargetColumnSchema.Type</label>
+    <label>@FieldName:</label>
+
+    <div class="paganod-input">
+
+        @switch (TargetColumnSchema.Type)
+        {
+            case Types.Base.Paganod.FormFieldType.Text:
+                <input type="text" @onchange="@HandleValueChange" value="@Value" />
+                
+                break;
+
+            case Types.Base.Paganod.FormFieldType.Reference:
+
+                <span class="lookup-btn" style="border: ;1px solid #ccc; background-color: #lightgray" @onclick="OpenLookupModal">
+                    L
+                </span>
+                <input type="text" @onchange="@HandleValueChange" value="@Value" />
+                
+                break;
+
+            case Types.Base.Paganod.FormFieldType.Dropdown:
+
+                <select @onchange="@HandleValueChange">
+                    @foreach (var item in @TargetColumnSchema.Options["DropdownOptions"].Split(","))
+                    {
+                        <option>@item</option>
+                    }
+
+                </select>
+
+                break;
+        }
+
+    </div>
+
+</div>

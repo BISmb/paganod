@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Feature\Config\Schema\Queries\" />
+    <Folder Include="Feature\File\Commands\" />
+    <Folder Include="Feature\File\Interfaces\" />
+    <Folder Include="Feature\File\Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Paganod.Shared\Paganod.Shared.csproj" />
+    <ProjectReference Include="..\Paganod.Type.Base\Paganod.Types.Base.csproj" />
+  </ItemGroup>
+
+</Project>

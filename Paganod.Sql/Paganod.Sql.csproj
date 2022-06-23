@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DynamicODataToSQL" Version="1.0.5" />
+    <PackageReference Include="FluentMigrator" Version="3.2.16" />
+    <PackageReference Include="FluentMigrator.Runner" Version="3.2.16" />
+    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="5.0.6" />
+    <PackageReference Include="MySqlConnector" Version="2.1.10" />
+    <PackageReference Include="System.Reactive" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Paganod.Data.Shared\Paganod.Data.Shared.csproj" />
+    <ProjectReference Include="..\Paganod.Shared\Paganod.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+	  <InternalsVisibleTo Include="Paganod.Data.Tests" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind screens;
+
+/* Records View Page */
+.section-title {
+    font-size: xx-large;
+    background-color: beige;
+    padding-left: 1em;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    margin: .25em;
+    margin-bottom: 1em;
+}
+
+.section-title > * {
+    margin: 0;
+}
+
+/* Shared */
+.paganod-form-element {
+    display: flex;
+
+    padding: 0.375em;
+}
+
+.paganod-form-element > * {
+    flex: 1;
+}
+
+.paganod-input {
+    display: flex;
+    border: 1px solid #ccc;
+    padding-left: 0.5em;
+    padding-left: 0.5em;
+}
+
+.paganod-input > * {
+    flex: 1;
+}
+
+.paganod-input > .lookup-btn {
+    padding-right: 0.375em;
+    flex: none;
+}
+
+.paganod-input-pair {
+    @apply flex flex-row p-3 my-2;
+}
+
+.paganod-input-pair > * {
+    @apply flex-1;
+}
+
+.paganod-button {
+    @apply button text-neutral-200 bg-teal-500 rounded p-2 hover:bg-teal-700;
+
+    margin-left: auto;
+    margin-right: 0;
+    display: block;
+    margin-top: 3em;
+}

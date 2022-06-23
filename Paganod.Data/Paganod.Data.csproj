@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Schema\**" />
+    <EmbeddedResource Remove="Schema\**" />
+    <None Remove="Schema\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="Dapper" Version="2.0.123" />
+    <PackageReference Include="EPPlus" Version="6.0.3" />
+    <PackageReference Include="linq2db" Version="3.6.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.0" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.0" />
+    <PackageReference Include="SqlKata" Version="2.3.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Paganod.Data.Schema\Paganod.Data.Schema.csproj" />
+    <ProjectReference Include="..\Paganod.Data.Shared\Paganod.Data.Shared.csproj" />
+    <ProjectReference Include="..\Paganod.Sql\Paganod.Sql.csproj" />
+    <ProjectReference Include="..\Paganod.Types\Paganod.Types.csproj" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<InternalsVisibleTo Include="Paganod.Data.Tests" />
+		<InternalsVisibleTo Include="Paganod.Tests.Library" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Contexts\Paganod\" />
+	  <Folder Include="Repos\Authentication\" />
+	</ItemGroup>
+
+</Project>

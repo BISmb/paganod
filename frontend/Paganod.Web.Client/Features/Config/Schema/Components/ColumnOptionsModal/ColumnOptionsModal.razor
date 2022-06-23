@@ -1,0 +1,32 @@
+@namespace Paganod.Web.Client.Features.Config.Schema.Components
+
+<style>
+    .modal-form {
+        display: flex;
+        flex-direction: column;
+    }
+</style>
+
+<div class="modal-form">
+
+    <div class="mb-4">
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                @onclick="AddNewOption">Add Option</button>
+    </div>
+
+    <form @onsubmit="SaveOptions">
+
+        <div class="mb-5">
+            @foreach(var option in Options)
+            {
+                <div class="paganod-form-element">
+                    <input class="paganod-input" type="text" value="@option.Key" @onchange="@((changeArgs) => RenameOptionKey(option, changeArgs))" />
+                    <input class="paganod-input" type="text" @bind="Options[option.Key]" />
+                </div>
+            }
+        </div>
+
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Save Options</button>
+
+    </form>
+</div>
