@@ -5,7 +5,7 @@ using Blazored.Modal.Services;
 using Fluxor;
 using Fluxor.Blazor.Web.Components;
 using Microsoft.AspNetCore.Components;
-
+using Paganod.Shared.Types;
 using Paganod.Web.Client.Types;
 using Paganod.Web.Store.DataUseCase;
 using Paganod.Web.Store.DataUseCase.Actions;

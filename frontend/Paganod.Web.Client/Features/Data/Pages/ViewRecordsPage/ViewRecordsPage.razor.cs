@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using Fluxor;
 using Fluxor.Blazor.Web.Components;
 using Microsoft.AspNetCore.Components;
+using Paganod.Shared.Types;
 using Paganod.Web.Client.Types;
 using Paganod.Web.Store;
 using Paganod.Web.Store.DataUseCase;

@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 using Paganod.Data.App.Internal;
 using Paganod.Data.Contexts.App;
-using Paganod.Data.Contexts.AppB;
 using Paganod.Data.Shared.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -19,7 +18,7 @@ namespace Paganod.Data.Tests;
 internal class DataTest
 {
     protected IAppDbContext _paganodDb;
-    protected IAppDbConnection _appDb;
+    //protected IAppDbConnection _appDb;
 
     [SetUp]
     public async Task SetupAsync()

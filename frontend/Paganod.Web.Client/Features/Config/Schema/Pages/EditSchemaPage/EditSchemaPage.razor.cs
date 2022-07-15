@@ -25,6 +25,9 @@ namespace Paganod.Web.Features.Config.Schema.Pages;
 public partial class EditSchemaPage : FluxorComponent
 {
     [Parameter]
+    public string TableName { get; set; }
+
+    [Parameter]
     public Guid SchemaId { get; set; }
 
     [Inject]
@@ -47,14 +50,15 @@ public partial class EditSchemaPage : FluxorComponent
     
     protected override Task OnParametersSetAsync()
     {
-        if(SchemaId != Guid.Empty)
-        {
-            //ActionSubscriber.SubscribeToAction<FetchConfigSchemaResultAction>(this, LoadSchemaModelForEdit);
-            ActionSubscriber.SubscribeToAction<SaveConfigSchemaResultAction>(this, HandleSchemaSaveResultAction); // this action will only be returned if the Schema is "versioned"
-            Dispatcher.Dispatch(new FetchConfigSchemaAction(SchemaId));
-        }
-        else
+        if (SchemaId == Guid.Empty && string.IsNullOrWhiteSpace(TableName))
             Modal.Show<NewSchemaModal>($"Create a new Schema");
+
+        ActionSubscriber.SubscribeToAction<SaveConfigSchemaResultAction>(this, HandleSchemaSaveResultAction);
+
+        if (SchemaId != Guid.Empty)
+            Dispatcher.Dispatch(new FetchConfigSchemaAction(SchemaId));
+        else if (!String.IsNullOrWhiteSpace(TableName))
+            Dispatcher.Dispatch(new FetchConfigSchemaAction(TableName));           
 
         return base.OnParametersSetAsync();
     }

@@ -11,7 +11,7 @@ namespace Paganod.Web.Client.Features.Config.Schema.Components;
 public partial class SchemaEditor : ComponentBase
 {
     [Parameter]
-    public EditSchemaFormViewModel FormModel { get; set; }
+    public EditSchemaFormViewModel FormModel { get; set; } // TODO: save the schema configuration in state, reduce through actions
 
     [Parameter]
     public EventCallback OnFormSubmit { get; set; }

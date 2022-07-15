@@ -1,10 +1,10 @@
-using Paganod.Web.Client.Types;
+using Paganod.Shared.Types;
 
 namespace Paganod.Web.Store.DataUseCase.Actions;
 
 public class FetchRecordResultAction
 {
-    public readonly Record Record;
+    public Record Record { get; init; }
 
     public FetchRecordResultAction(Record record)
     {

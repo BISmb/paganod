@@ -21,9 +21,11 @@ public partial class PaganodMigration : Migration, IDisposable
     private readonly IAppDbContext AppDbContext;
 
     private readonly IEnumerable<ISchemaOperation> Operations;
+    private readonly DatabaseProvider DbType;
 
-    public PaganodMigration(IAppDbContext dbContext, SchemaMigration migration)
+    public PaganodMigration(IAppDbContext dbContext, SchemaMigration migration, DatabaseProvider dbType)
     {
+        DbType = dbType;
         AppDbContext = dbContext;
         SelectedMigration = migration;
 

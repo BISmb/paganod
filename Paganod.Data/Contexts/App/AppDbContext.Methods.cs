@@ -12,7 +12,7 @@ using Paganod.Data.Shared.Interfaces;
 
 namespace Paganod.Data.Contexts.App;
 
-internal partial class AppDbContext : IAppDbContext
+internal partial class AppDbContext //: IAppDbContext
 {
     public DbCommand GetDbCommand()
     {

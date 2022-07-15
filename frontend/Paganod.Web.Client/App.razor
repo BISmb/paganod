@@ -1,4 +1,6 @@
-﻿@*@if(LoadingState.Value.IsLoading)
+﻿@inherits FluxorComponent
+
+@*@if(LoadingState.Value.IsLoading)
 {
     <p>@LoadingState.Value.StatusMessage</p>
 }*@

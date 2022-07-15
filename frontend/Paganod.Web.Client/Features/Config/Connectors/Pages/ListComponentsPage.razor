@@ -1,0 +1,15 @@
+﻿@page "/config/connectors"
+
+@namespace Paganod.Web.Client.Features.Config.Connectors.Pages
+
+@inherits FluxorComponent
+
+@if (ConnectorState.Value.IsLoading)
+{
+    <p>@ConnectorState.Value.StatusMessage</p>
+}
+
+@foreach(var connector in ConnectorState.Value.Connectors)
+{
+    <p>@connector.ConnectorId -- @connector.Type -- @connector.ConnectorJson</p>
+}

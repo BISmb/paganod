@@ -2,6 +2,9 @@ using Fluxor;
 
 using Paganod.Web.Client.Types;
 
+using Paganod.Api.Shared.Feature.Config.Schema.Responses;
+using Paganod.Shared.Types;
+
 namespace Paganod.Web.Store.DataUseCase;
 
 [FeatureState]

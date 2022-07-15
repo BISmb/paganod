@@ -1,7 +1,9 @@
 ﻿using Paganod.Data.Shared.Types;
 using Paganod.Sql.DDL.FluentMigrator;
+using Paganod.Sql.DML;
 using Paganod.Sql.Utility;
 using Paganod.Types.Domain;
+using SqlKata;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -40,11 +42,31 @@ public partial class PaganodMigration
             currentColumn.Version = 1;
 
             // v1 data copy to v2 column (rename, no transformation required)
-
+            UpdateVersionedColumns(tableName, newSchemaColumn.Name, currentColumn.Name);
 
             // v1 data copy to v2 column (type change, transformation required)
+            //UpdateVersionedColumns(tableName, newSchemaColumn.Name, currentColumn.Name, "");
         }
 
         return Task.CompletedTask;
+    }
+
+    private void UpdateVersionedColumns(string tableName, string newColumnName, string currentColumnName, string transformationFunction = "")
+    {
+        if (string.IsNullOrWhiteSpace(transformationFunction))
+            currentColumnName = AddTransformationFunctionToColum(currentColumnName, transformationFunction);
+
+        var query = new Query(tableName).AsUpdate(newColumnName, currentColumnName);
+        var sqlGenerator = SqlKataGenerator.GetKataCompiler(DbType); 
+        var generatedQuery = sqlGenerator.Compile(query);
+
+        Execute.Sql(generatedQuery.Sql);
+    }
+
+    private string AddTransformationFunctionToColum(string newColumnName, string transformationFunction)
+    {
+        // this function is not implemented
+
+        return newColumnName;
     }
 }

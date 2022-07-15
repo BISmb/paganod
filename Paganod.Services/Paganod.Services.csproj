@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="ConfigService\" />
+    <None Remove="ConfigService\Types\" />
+    <None Remove=".DS_Store" />
+    <None Remove="Data\" />
+    <None Remove="Files\" />
+    <None Remove="Storage\Types\Responses.c" />
+    <None Remove="OneOf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Config\" />
+    <Folder Include="Data\" />
+    <Folder Include="Storage\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Paganod.Shared\Paganod.Shared.csproj" />
+    <ProjectReference Include="..\Paganod.Types\Paganod.Types.csproj" />
+    <ProjectReference Include="..\Paganod.Data.Shared\Paganod.Data.Shared.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="OneOf" Version="3.0.223" />
+  </ItemGroup>
+</Project>

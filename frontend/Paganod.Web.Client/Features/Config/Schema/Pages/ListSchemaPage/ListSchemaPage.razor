@@ -1,0 +1,38 @@
+@namespace Paganod.Web.Features.Config.Schema.Pages
+
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+@page "/config/schema"
+
+<button>New Schema Model</button>
+
+<table>
+    <thead>
+        <tr>
+            <th>Schema Id</th>
+            <th>Table Name (Display)</th>
+            <th>Record Name (Display)</th>
+            <th>Table Name (Strict)</th>
+            <th>Record Name (Strict)</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @if(ConfigSchemaState.Value.SchemaModels is not null && ConfigSchemaState.Value.SchemaModels.Any())
+        {
+            @foreach (var schema in ConfigSchemaState.Value.SchemaModels)
+            {
+                <tr @onclick="() => NavigateToSchemaEditPage(schema.SchemaModelId)">
+                    <td>@schema.SchemaModelId</td>
+                    <td>@schema.TableName</td>
+                    <td>@schema.TableName</td>
+                    <td>@schema.TableName</td>
+                    <td>@schema.TableName</td>
+                </tr>
+                <a href="config/schema/@schema.SchemaModelId"></a>
+            }
+        }
+
+    </tbody>
+
+</table>

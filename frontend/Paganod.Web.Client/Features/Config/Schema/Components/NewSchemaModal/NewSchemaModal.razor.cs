@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Fluxor;
 using Fluxor.Blazor.Web.Components;
 using Microsoft.AspNetCore.Components;
-using Paganod.Api.Shared.Feature.Config.Schema.Commands;
+using Paganod.Types.Api.Config.Commands;
 using Paganod.Web.Client.Store.AppUseCase.Actions;
 using Paganod.Web.Store.SchemaUseCase;
 using Paganod.Web.Store.SchemaUseCase.Actions;

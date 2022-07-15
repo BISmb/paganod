@@ -13,7 +13,8 @@ namespace Paganod.Data.Repos.Paganod;
 
 internal class SchemaModelRepo : RepoBase<SchemaModel, SchemaModelRecord>, ISchemaModelRepo
 {
-    public SchemaModelRepo(AppDbContext prmDbContext) : base(prmDbContext)
+    public SchemaModelRepo(AppDbContext prmDbContext)
+        : base(prmDbContext)
     {
 
     }
@@ -109,5 +110,10 @@ internal class SchemaModelRepo : RepoBase<SchemaModel, SchemaModelRecord>, ISche
     public IEnumerable<string> GetAllTableNames()
     {
         return DbEf.SchemaModelRecords.Select(x => x.TableName);
+    }
+
+    public string GetPrimaryKeyForTable(string tableName)
+    {
+        return DbEf.SchemaModelRecords.First(x => x.TableName.Equals(StringComparer.OrdinalIgnoreCase)).PrimaryKeyName;
     }
 }

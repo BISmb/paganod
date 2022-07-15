@@ -4,8 +4,8 @@ namespace Paganod.Web.Store.DataUseCase.Actions;
 
 public class FetchRecordAction
 {
-    public readonly string TableName;
-    public readonly Guid RecordId;
+    public string TableName { get; init; }
+    public Guid RecordId { get; init; }
 
     public FetchRecordAction(string tableName, Guid recordId)
     {

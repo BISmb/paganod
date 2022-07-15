@@ -37,7 +37,7 @@
 
             case Types.Base.Paganod.FormFieldType.Reference:
 
-                <span class="lookup-btn" style="border: ;1px solid #ccc; background-color: #lightgray" @onclick="OpenLookupModal">
+                <span class="lookup-btn" style="border: ;1px solid #ccc; background-color: lightgray; padding: 0;" @onclick="OpenLookupModal">
                     L
                 </span>
                 <input type="text" @onchange="@HandleValueChange" value="@Value" />
@@ -49,7 +49,14 @@
                 <select @onchange="@HandleValueChange">
                     @foreach (var item in @TargetColumnSchema.Options["DropdownOptions"].Split(","))
                     {
-                        <option>@item</option>
+                        @if(Value.Equals(item))
+                        {
+                            <option selected>@item</option>
+                        }
+                        else
+                        {
+                            <option>@item</option>
+                        }
                     }
 
                 </select>

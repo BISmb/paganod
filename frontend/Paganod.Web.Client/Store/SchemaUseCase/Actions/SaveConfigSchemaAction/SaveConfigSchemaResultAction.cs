@@ -1,4 +1,5 @@
 using Paganod.Web.Client.Types;
+using Paganod.Api.Shared.Feature.Config.Schema.Responses;
 
 namespace Paganod.Web.Store.SchemaUseCase.Actions;
 

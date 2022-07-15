@@ -1,0 +1,9 @@
+﻿@page "/"
+@namespace Paganod.Web.ServerRendered.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_Layout";
+}
+
+<component type="typeof(Paganod.Web.Client.App)" render-mode="Server" />
+

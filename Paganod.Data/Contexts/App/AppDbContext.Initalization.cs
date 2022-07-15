@@ -1,26 +1,15 @@
-﻿using Microsoft.Data.Sqlite;
-using Microsoft.EntityFrameworkCore;
-
-using Paganod.Data.App.Schema;
-using Paganod.Data.Contexts.AppB;
-using Paganod.Data.Shared.Interfaces;
-using Paganod.Shared;
-using Paganod.Sql.DDL;
+﻿using Paganod.Data.Shared.Interfaces;
 using Paganod.Sql.DDL.Migrations;
-using Paganod.Sql.Utility;
 using Paganod.Types.Base.Paganod.Schema;
 using Paganod.Types.Domain;
 
 using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Paganod.Data.Contexts.App;
 
-internal partial class AppDbContext : IAppDbContext
+internal partial class AppDbContext //: IAppDbContext
 {
     public async Task InitalizeAsync()
     {
@@ -53,16 +42,16 @@ internal partial class AppDbContext : IAppDbContext
         return ExecuteMigrationOnTargetAsync(targetMigration);
     }
 
-    public async Task ExecuteMigrationOnTargetAsync(SchemaMigration migration, IAppDbConnection targetDatabase = null)
+    public async Task ExecuteMigrationOnTargetAsync(SchemaMigration migration)
     {
         if (migration.AppliedOn != DateTime.MinValue)
             await Task.CompletedTask;
 
-        using (var targetDatabaseConnection = targetDatabase.NewConnection())
-        {
-            SchemaConfigRunner configRunner = new SchemaConfigRunner(this, targetDatabaseConnection);
-            await configRunner.RunAsync(migration);
-        }
+        //using (var targetDatabaseConnection = targetDatabase.NewConnection())
+        //{
+        //    SchemaConfigRunner configRunner = new SchemaConfigRunner(this, targetDatabaseConnection);
+        //    await configRunner.RunAsync(migration);
+        //}
 
         migration.AppliedOn = DateTime.Now;
         await SaveChangesAsync();

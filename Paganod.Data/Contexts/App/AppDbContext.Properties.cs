@@ -2,13 +2,10 @@
 using Paganod.Data.Shared.Interfaces;
 
 using System;
-using Paganod.Shared;
-using Paganod.Data.App.Schema;
-using System.Threading.Tasks;
-using Paganod.Data.App.Repos.Data;
-using Microsoft.EntityFrameworkCore;
 using System.Data.Common;
 using Microsoft.Data.Sqlite;
+using System.Threading.Tasks;
+using Paganod.Types.Domain;
 
 namespace Paganod.Data.Contexts.App;
 
@@ -24,6 +21,11 @@ internal partial class AppDbContext : IAppDbContext
     public ISchemaRelationshipRepo SchemaRelationships { get; }
     public ISchemaMigrationRepo SchemaMigrations { get; }
     public ISchemaMigrationOperationRepo SchemaMigrationOperations { get; }
+
+    public Task ExecuteMigrationOnTargetAsync(SchemaMigration forwardMigration, IAppDbContext targetDatabase = null)
+    {
+        throw new NotImplementedException();
+    }
 
     //public IAttachmentRepo Attachments { get; }
     //public IManagedFileRepo ManagedFiles { get; }

@@ -15,7 +15,7 @@ public static class FluentMigratorMethods
 {
     public static Func<DbType, int?, int?, string> GetDbType;
 
-    public static IMigrationRunner GetMigrationRunner(IDbConnection dbConnection)
+    public static IMigrationRunner GetMigrationRunner(IDbConnection dbConnection, bool preview = false)
     {
         var serviceCollection = new ServiceCollection()
             .AddFluentMigratorCore()
@@ -27,6 +27,7 @@ public static class FluentMigratorMethods
         {
             runner.AddDbType();
             runner.WithGlobalConnectionString(dbConnection.ConnectionString);
+            runner.AsGlobalPreview(preview);
         });
 
         var serviceProvider = serviceCollection.BuildServiceProvider();

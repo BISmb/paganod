@@ -1,5 +1,6 @@
 using System.Text.Json;
 using Fluxor;
+using Paganod.Shared.Types;
 using Paganod.Web.Client.Store.DataUseCase.Actions;
 using Paganod.Web.Client.Types;
 using Paganod.Web.Store.DataUseCase.Actions;

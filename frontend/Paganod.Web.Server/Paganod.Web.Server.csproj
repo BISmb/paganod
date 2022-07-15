@@ -11,7 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Paganod.Web.Client\Paganod.Web.Client.csproj" />
+    <ProjectReference Include="..\..\Paganod.Api\Paganod.Api.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
 
 

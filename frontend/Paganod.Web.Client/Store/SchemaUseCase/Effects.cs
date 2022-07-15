@@ -1,7 +1,11 @@
 using Fluxor;
 
-using Paganod.Web.Client.Services;
+using Paganod.Web.Client.Store.SchemaUseCase;
 using Paganod.Web.Store.SchemaUseCase.Actions;
+
+using Paganod.Api.Shared.Feature.Config.Schema.Responses;
+using Paganod.Api.Shared;
+using Paganod.Api.Client;
 
 namespace Paganod.Web.Store.SchemaUseCase;
 
@@ -17,27 +21,35 @@ public class Effects
     [EffectMethod]
     public async Task HandleCreateSchemaAction(CreateSchemaAction action, IDispatcher dispatcher)
     {
-        // worth using polly try / catch here?
-        var schemaId = await PaganodApiClient.CreatSchemaAsync(action.Model);
+        await Task.Delay(1000);
 
-        if (schemaId is null)
-            dispatcher.Dispatch(new CreateSchemaResultAction(null));
-        else
-            dispatcher.Dispatch(new CreateSchemaResultAction(schemaId.Value));
+        // worth using polly try / catch here?
+        var schemaId = Guid.Empty; // await PaganodApiClient.CreatSchemaAsync(action.Model);
+
+        //if (schemaId is null)
+        //    dispatcher.Dispatch(new CreateSchemaResultAction(null));
+        //else
+            dispatcher.Dispatch(new CreateSchemaResultAction(schemaId));
     }
 
-    // [EffectMethod]
-    // public async Task HandleFetchConfigSchemaAction(FetchConfigSchemaAction action, IDispatcher dispatcher)
-    // {
-    //     // action.SchemaId, get full schema model for config
-    //     //await Task.Delay(5000);
+    [EffectMethod]
+    public async Task HandleFetchSchemasAction(FetchSchemasAction action, IDispatcher dispatcher)
+    {
+        var schemas = await PaganodApiClient.GetSchemaModels();
 
-    //     var schemaModel = action.SchemaId != Guid.Empty
-    //         ? await PaganodApiClient.GetSchemaModelAsync(action.SchemaId) 
-    //         : await PaganodApiClient.GetSchemaModelAsync(action.SchemaTableName);
+        dispatcher.Dispatch(new FetchSchemasResultAction(schemas));
 
-    //     dispatcher.Dispatch(new FetchConfigSchemaResultAction(schemaModel));
-    // }
+    }
+
+    [EffectMethod]
+    public async Task HandleFetchConfigSchemaAction(FetchConfigSchemaAction action, IDispatcher dispatcher)
+    {
+        var schemaModel = action.SchemaId != Guid.Empty
+            ? await PaganodApiClient.GetSchemaModelAsync(action.SchemaId)
+            : await PaganodApiClient.GetSchemaModelAsync(action.SchemaTableName);
+
+        dispatcher.Dispatch(new FetchConfigSchemaResultAction(schemaModel));
+    }
 
     [EffectMethod]
     public async Task HandleSaveConfigSchemaAction(SaveConfigSchemaAction action, IDispatcher dispatcher)

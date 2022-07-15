@@ -54,7 +54,7 @@ internal class TableIntegrationTests : DataTest
         var colInfo = (Name: "notes", Type: FormFieldType.Text);
 
         var addMigrations = await _appDb.Schema.Configure.AddColumn(colInfo.Name, colInfo.Type, alternativeTableName: tableName)
-                                                               .GenerateMigrationsAsync();
+                                                           .GenerateMigrationsAsync();
 
         var migration = addMigrations.ForwardMigration;
         migration.TargetSchemaModelId = _paganodDb.SchemaModels.GetByTableName(tableName).Id;

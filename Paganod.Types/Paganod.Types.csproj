@@ -9,4 +9,32 @@
     <ProjectReference Include="..\Paganod.Type.Base\Paganod.Types.Base.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Dto\" />
+    <None Remove="Api\Config\" />
+    <None Remove="Api\Config\Commands\" />
+    <None Remove="Api\Config\Query\" />
+    <None Remove="Api\Config\Response\" />
+    <None Remove="Api\Storage\" />
+    <None Remove="Api\File\Response\" />
+    <None Remove="OneOf" />
+    <None Remove="Api\Commands\" />
+    <None Remove="Api\Requests\" />
+    <None Remove="Api\Responses\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Api\" />
+    <Folder Include="Api\Config\" />
+    <Folder Include="Api\Config\Commands\" />
+    <Folder Include="Api\Config\Query\" />
+    <Folder Include="Api\Config\Response\" />
+    <Folder Include="Api\File\" />
+    <Folder Include="Api\File\Response\" />
+    <Folder Include="Api\Commands\" />
+    <Folder Include="Api\Requests\" />
+    <Folder Include="Api\Responses\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="OneOf" Version="3.0.223" />
+  </ItemGroup>
 </Project>

@@ -5,7 +5,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using Paganod.Types.Base.Paganod;
-using PropertyChanged;
 
 namespace Paganod.Web.Client.Types.ViewModels;
 

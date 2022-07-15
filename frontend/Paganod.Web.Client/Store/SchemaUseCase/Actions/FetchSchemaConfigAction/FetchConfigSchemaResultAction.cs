@@ -4,7 +4,7 @@ namespace Paganod.Web.Store.SchemaUseCase.Actions;
 
 public class FetchConfigSchemaResultAction
 {
-    public readonly SchemaModelDto SchemaModel;
+    public SchemaModelDto SchemaModel { get; init; }
 
     public FetchConfigSchemaResultAction(SchemaModelDto newSchemaModel)
     {

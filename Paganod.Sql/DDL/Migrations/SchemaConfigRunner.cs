@@ -1,5 +1,4 @@
-﻿
-using Paganod.Data.Shared.Interfaces;
+﻿using Paganod.Data.Shared.Interfaces;
 using Paganod.Sql.DDL.FluentMigrator;
 using Paganod.Sql.Utility;
 using Paganod.Types.Domain;
@@ -32,8 +31,11 @@ public class SchemaConfigRunner
     {
         try
         {
-            var paganodMigration = new PaganodMigration(PaganodDb, migration);
+            var paganodMigration = new PaganodMigration(PaganodDb, migration, DatabaseProvider.Sqlite);
             var runner = FluentMigratorMethods.GetMigrationRunner(TargetDb);
+
+            
+
             runner.Up(paganodMigration);
             taskCompletionSource.SetResult();
         }

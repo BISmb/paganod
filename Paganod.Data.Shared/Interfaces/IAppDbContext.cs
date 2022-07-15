@@ -8,15 +8,6 @@ using System.Data.Common;
 
 namespace Paganod.Data.Shared.Interfaces;
 
-public interface IAppDbConnection
-{
-    IRecordRepository Data { get; }
-    //ITargetTableDataOperations this[string table, int version = -1] { get; }
-
-    IDatabaseSchemaOperations Schema { get; }
-    DbConnection NewConnection(); // utilizes DbFactory private method under the hood
-}
-
 /// <summary>
 /// Represents a single database connection, with a single transaction.
 /// To be used within a using() statement
@@ -46,7 +37,8 @@ public interface IAppDbContext : IDisposable, IDataContext
     ISchemaMigrationRepo SchemaMigrations { get; }
     ISchemaMigrationOperationRepo SchemaMigrationOperations { get; }
     Task ExecuteMigrationAsync(Guid migrationId);
-    Task ExecuteMigrationOnTargetAsync(SchemaMigration forwardMigration, IAppDbConnection targetDatabase = null);
+    Task<IRecordDbContext> GetUserDatabaseAsync();
+    Task ExecuteMigrationOnTargetAsync(SchemaMigration forwardMigration, IAppDbContext targetDatabase = null);
 
     //ISchemaMigrationRepo SchemaMigrations { get; }
     //ISchemaMigrationOperationRepo SchemaMigrationOperations { get; }
@@ -96,4 +88,11 @@ public interface IAppDbContext : IDisposable, IDataContext
     //IJobScheduleRepository JobSchedules { get; }
     //IJobRepository Jobs { get; }
     #endregion
+}
+
+public interface IRecordDbContext : IDisposable
+{
+    IRecordRepository Data { get; }
+    IDatabaseSchemaOperations Schema { get; }
+    DbConnection NewConnection(); // utilizes DbFactory private method under the hood
 }

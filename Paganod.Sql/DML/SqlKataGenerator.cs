@@ -23,19 +23,23 @@ public class SqlKataGenerator : IPaganodSqlKataGenerator
      * Utility Functions
      */
     #region "Utility Functions"
-
-    private Compiler GetKataCompiler()
+    internal static Compiler GetKataCompiler(DatabaseProvider dbType)
     {
-        var dbProvider = _SchemaMap.GetDatabaseProvider();
-        return dbProvider switch
+        return dbType switch
         {
             DatabaseProvider.MySQL => new MySqlCompiler(),
             DatabaseProvider.Postgres => new PostgresCompiler(),
             DatabaseProvider.SqlServer => new SqlServerCompiler(),
             DatabaseProvider.Sqlite => new SqliteCompiler(),
 
-            _ => throw new NotSupportedException($"Db Provider: {dbProvider} is not supported")
+            _ => throw new NotSupportedException($"Db Provider: {dbType} is not supported")
         };
+    }
+
+    private Compiler GetKataCompiler()
+    {
+        var dbProvider = _SchemaMap.GetDatabaseProvider();
+        return GetKataCompiler(dbProvider);
     }
 
     private IDictionary<string, object> GetSqlParametersDictionary(object[] objectParams)
@@ -52,6 +56,11 @@ public class SqlKataGenerator : IPaganodSqlKataGenerator
         var generatedQuery = _KataCompiler.Compile(kataQuery);
         var sqlParams = GetSqlParametersDictionary(generatedQuery.Bindings.ToArray());
         return new PaganodSqlQuery(generatedQuery.Sql, sqlParams);
+    }
+
+    internal void Update(string tableName, params (string, object)[] updateParams)
+    {
+        
     }
 
     private (string TableName, string PrimaryKeyColumn) GetTableInfo(string tableName)
@@ -204,29 +213,5 @@ public class SqlKataGenerator : IPaganodSqlKataGenerator
             query = query.Where(filters);
 
         return KataQueryToPaganodQuery(query);
-    }
-}
-
-public static class SqlKataExtensions
-{
-    // todo: unit twst this method
-    public static Query Select(this Query query, (string Name, string Alias)[] columnAndAliases)
-    {
-        query.Method = "select";
-
-        var columns = columnAndAliases
-            .Select(x => $"{x.Item1} as {x.Alias}")
-            .ToArray();
-
-
-        foreach (var column in columns)
-        {
-            query.AddComponent("select", new Column
-            {
-                Name = column
-            });
-        }
-
-        return query;
     }
 }

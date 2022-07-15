@@ -12,6 +12,8 @@ using Paganod.Web.Client.Types;
 using System.Threading.Tasks;
 using System.Linq;
 
+using Paganod.Api.Shared.Feature.Config.Schema.Responses;
+
 namespace Paganod.Web.Features.Data.Components;
 
 public partial class PaganodInput : FluxorComponent
@@ -45,6 +47,7 @@ public partial class PaganodInput : FluxorComponent
 
     protected override Task OnParametersSetAsync()
     {
+        Console.WriteLine(Value.ToString());
         SetPaganodType();
 
         return base.OnParametersSetAsync();

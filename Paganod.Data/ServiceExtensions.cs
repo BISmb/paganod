@@ -33,7 +33,7 @@ namespace Paganod.Data
             services.AddScoped<IAppDbContext>((services) =>
             {
                 var dbOptions = new DbContextOptionsBuilder<EfDataAccess>()
-                                        .UseSqlite("Data Source=c:\\users\\marty\\desktop\\paganod.db")
+                                        .UseSqlite("Data Source=/Users/marty/Desktop/paganod.db")
                                         .Options;
 
                 var dbContext = new AppDbContext(dbOptions);

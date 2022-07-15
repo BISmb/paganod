@@ -1,3 +1,4 @@
+using Paganod.Shared.Types;
 using Paganod.Web.Client.Types;
 
 namespace Paganod.Web.Client.Store.DataUseCase.Actions;

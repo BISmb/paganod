@@ -14,6 +14,5 @@ public abstract record DomainType : IDataRecord, INotifyPropertyChanged
     public DateTime CreatedOn { get; set; }
     public DateTime ModifiedOn { get; set; }
 
-
     public event PropertyChangedEventHandler PropertyChanged;
 }

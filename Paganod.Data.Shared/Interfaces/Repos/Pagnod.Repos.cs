@@ -33,6 +33,7 @@ public interface ISchemaModelRepo : IExternalRepoBase<SchemaModel>
     bool Any(Expression<Func<ISchemaModel, bool>> predicate);
     SchemaModel GetByRecordType(string recordType);
     IEnumerable<string> GetAllTableNames();
+    string GetPrimaryKeyForTable(string tableName);
 }
 
 public interface ISchemaColumnRepo : IExternalRepoBase<SchemaColumn>

@@ -1,6 +1,4 @@
-﻿using FluentMigrator;
-using FluentMigrator.Builders.Update;
-using FluentMigrator.Runner;
+﻿using FluentMigrator.Runner;
 
 using Microsoft.Extensions.DependencyInjection;
 using System.IO;
@@ -11,6 +9,11 @@ public static class Extensions
 {
     public static IMigrationRunnerBuilder AddDbType(this IMigrationRunnerBuilder runnerBuilder, string dbType = "")
     {
+        runnerBuilder.ConfigureGlobalProcessorOptions(options =>
+        {
+            options.PreviewOnly = true;
+        });
+
         return runnerBuilder.AddSQLite();
 
         //return dbType switch

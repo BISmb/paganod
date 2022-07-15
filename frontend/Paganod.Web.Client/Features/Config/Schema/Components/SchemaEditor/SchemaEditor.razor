@@ -41,6 +41,7 @@
                     <th>Name:</th>
                     <th>Type:</th>
                     <th>Options:</th>
+                    <th></th>
                 </tr>
             </thead>
 
@@ -49,10 +50,12 @@
                 {
                     <tr>
                         <td>
+                            @* OnChange, add this column to the RenamedColumns *@
                             <InputText placeholder="New Column Name" @bind-Value="item.Name" />
                         </td>
 
                         <td>
+                            @* OnChanged, add this column to the AlteredColumns *@
                             <InputSelect @bind-Value="item.Type">
                                 @* <option value="@FormFieldType.CheckBox">Check</option>
                                 <option value="@FormFieldType.Date">Date</option>
@@ -65,10 +68,21 @@
                             </InputSelect>
                         </td>
                         <td>
+                            @* OnChanged, add this column to the AlteredColumns *@
                             <button class="bg-gray-500 hover:bg-blue-700 text-white font-bold py-2 px-4"
-                                    type="button" 
-                                    @onclick=@((args) => ConfigureOptionsAsync(item))>...</button>
+                                    type="button"
+                                    @onclick=@((args) => ConfigureOptionsAsync(item))>
+                                ...
+                            </button>
                         </td>
+
+                        <td>
+                            @* OnChanged, add this column to the RemovedColumn *@
+                            <button>
+                                Delete
+                            </button>
+                        </td>
+
                     </tr>
                 }
             </tbody>

@@ -1,6 +1,4 @@
-using System.Data;
-using Paganod.Api.Shared.Feature.Config.Schema.Commands;
-using Paganod.Web.Client.Types;
+using Paganod.Types.Api.Config.Commands;
 
 namespace Paganod.Web.Store.SchemaUseCase.Actions;
 

@@ -4,8 +4,8 @@ namespace Paganod.Web.Store.SchemaUseCase.Actions;
 
 public class FetchConfigSchemaAction
 {
-    public readonly Guid SchemaId;
-    public readonly string? SchemaTableName;
+    public Guid SchemaId { get; init; }
+    public string SchemaTableName { get; init; }
 
     public FetchConfigSchemaAction(Guid newSchemaId)
     {

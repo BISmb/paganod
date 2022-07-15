@@ -4,8 +4,8 @@ namespace Paganod.Web.Store.AttachmentsUseCase.Actions;
 
 public class FetchAttachmentsAction
 {
-    public readonly string TableName;
-    public readonly Guid RecordId;
+    public string TableName { get; init; }
+    public Guid RecordId { get; init; }
 
     public FetchAttachmentsAction(string tableName, Guid recordId)
     {

@@ -8,6 +8,8 @@
     <Compile Remove="Schema\**" />
     <EmbeddedResource Remove="Schema\**" />
     <None Remove="Schema\**" />
+    <None Remove="Contexts\Records\" />
+    <None Remove="Contexts\Records\Schema\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +30,7 @@
     <ProjectReference Include="..\Paganod.Data.Shared\Paganod.Data.Shared.csproj" />
     <ProjectReference Include="..\Paganod.Sql\Paganod.Sql.csproj" />
     <ProjectReference Include="..\Paganod.Types\Paganod.Types.csproj" />
+    <ProjectReference Include="..\Paganod.Shared\Paganod.Shared.csproj" />
   </ItemGroup>
 
 	<ItemGroup>
@@ -36,8 +39,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Contexts\Paganod\" />
 	  <Folder Include="Repos\Authentication\" />
+	  <Folder Include="Contexts\Records\" />
+	  <Folder Include="Contexts\Records\Schema\" />
 	</ItemGroup>
 
 </Project>

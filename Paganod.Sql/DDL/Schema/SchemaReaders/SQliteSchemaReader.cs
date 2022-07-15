@@ -24,6 +24,11 @@ internal class SQliteSchemaReader : ISqlSchemaReader
     internal SQliteSchemaReader(SqliteConnection dbConnection)
     {
         _DbConnection = dbConnection;
+
+
+        var backup = new SqliteConnection("Data Source=BackupSample.db");
+        dbConnection.BackupDatabase(backup);
+
         // $"SELECT name FROM PRAGMA_TABLE_INFO({tableName});"
     }
 
